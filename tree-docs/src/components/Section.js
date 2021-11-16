@@ -1,4 +1,5 @@
 import { Container, Input, Form, Button, Icon, Grid } from 'semantic-ui-react'
+import '../styles/Section.css'
 
 export default function Section() {
     return (
