@@ -34,8 +34,26 @@ function Document() {
 
     function toggleSection(e, titleProps) {
         let newArr = [...sections]
-        newArr[titleProps.index].active = !titleProps.active;
-        setActive(newArr);
+        newArr[titleProps.index].active = !titleProps.active
+        setSections(newArr)
+    }
+
+    function moveUp(e, id, index) {
+        e.stopPropagation()
+        let newArr = [...sections]
+        let temp = newArr[index]
+        newArr[index] = newArr[index - 1]
+        newArr[index - 1] = temp
+        setSections(newArr)
+    }
+
+    function moveDown(e, id, index) {
+        e.stopPropagation()
+        let newArr = [...sections]
+        let temp = newArr[index]
+        newArr[index] = newArr[index + 1]
+        newArr[index + 1] = temp
+        setSections(newArr)
     }
 
     function handleTitleClick(e) {
@@ -44,23 +62,23 @@ function Document() {
 
     return (
         <Container style={{marginTop: "50px"}}>
-            <Button onClick = {addSection}>New Paragraph</Button>
+            <Button onClick={addSection} icon="plus"/>
 
             <Accordion styled style={{marginTop: "20px"}}>
                 {sections.length ? sections.map((section, index) => {
                     return (
-                        <>
+                        <span key={section.id}>
                             <Accordion.Title active={section.active} index={index} onClick={toggleSection}>
                                 <Form>
                                     <Form.Group inline>
                                         <Form.Input icon="dropdown" iconPosition="left" size="massive" transparent placeholder="Title" width={15} defaultValue={section.title} onClick={(e) => handleTitleClick(e)} />
-                                        <Form.Button size="mini" icon>
+                                        {index > 0 && <Form.Button size="mini" icon onClick={(e) => moveUp(e, section.id, index)}>
                                             <Icon name='angle up'/>
-                                        </Form.Button>
-                                        <Form.Button size="mini" icon>
+                                        </Form.Button>}
+                                        {index < sections.length - 1 && <Form.Button size="mini" icon onClick={(e) => moveDown(e, section.id, index)}>
                                             <Icon name='angle down'/>
-                                        </Form.Button>
-                                        <Form.Button icon size="mini" width={1} key={section.id} onClick={(e) => deleteSection(e, section.id)}>
+                                        </Form.Button>}
+                                        <Form.Button icon size="mini" width={1} onClick={(e) => deleteSection(e, section.id)}>
                                             <Icon name="trash"/>
                                         </Form.Button>
                                     </Form.Group>
@@ -71,7 +89,7 @@ function Document() {
                                     <Form.TextArea placeholder="Content" defaultValue={section.text} />
                                 </Form>
                             </Accordion.Content>
-                        </>
+                        </span>
                     )
                 }) : <h1>No sections yet!</h1>}
             </Accordion>
