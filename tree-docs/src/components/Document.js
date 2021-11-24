@@ -1,5 +1,5 @@
-import { useEffect, useState, useReducer } from 'react';
-import { Accordion, Button, Container, Icon, Form, Grid } from 'semantic-ui-react'
+import { useState } from 'react';
+import { Accordion, Button, Container, Icon, Form } from 'semantic-ui-react'
 
 function Document() {
 
@@ -18,8 +18,6 @@ function Document() {
     }
 
     const [sections, setSections] = useState([fakeSection1, fakeSection2])
-
-    const [active, setActive] = useState([false, false]);
 
     function addSection() {
         setSections([...sections, {id: 3, title: "Title3", text: "new"}])
