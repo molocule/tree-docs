@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { Accordion, Button, Container, Icon, Form } from 'semantic-ui-react'
+import { useLocation } from 'react-router-dom';
 
-function Document() {
+function DocumentEditor() {
+
+    const { state } = useLocation();
 
     let fakeSection1 = {
         id: 1,
@@ -20,6 +23,7 @@ function Document() {
     const [sections, setSections] = useState([fakeSection1, fakeSection2])
 
     function addSection() {
+        console.log(state);
         setSections([...sections, {id: 3, title: "Title3", text: "new"}])
     }
 
@@ -96,4 +100,4 @@ function Document() {
     );
 }
 
-export default Document;
+export default DocumentEditor;
