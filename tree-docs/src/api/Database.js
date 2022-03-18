@@ -1,3 +1,8 @@
+/*
+ * getDocuments
+ * Outputs all documents stored in database (will maybe add authentication later)
+ * TODO: Implement document 
+ */
 function getDocuments() {
     let test1 = {
         id: 1,
@@ -14,7 +19,30 @@ function getDocuments() {
     return [test1, test2, test3];
 }
 
-function getTree(document_id) {
+/*
+ * getSummary
+ * Gets a summary of the document (e.g. who created it, when last modified) just any relevant metadata we have
+ * TODO: Implement getting the summary of a document based on did (this is to be displayed as you hover over a node in the tree display)
+ */
+
+function getSummary(did) {
+
+}
+
+/*
+ * getTree
+ * Gets all relevant documents related to the document id 
+ * (Maybe should change the schema to have a field called root_did that keeps track of the original doc.
+ * This would make it easier to get all the docs).
+ * TODO: Implement document collection based on the root_did and return all docs with the specified did and have it
+ * return a list in the form [{   child_did: 2,
+                                  parent_did: 1,
+                                  author_name: "Bob"
+                              }]
+        See below for examples
+ */
+
+function getTree(root_did) {
     // Need to join Hierarchy, Documents, + Users
     let data = [
         {   child_did: 2,
