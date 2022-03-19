@@ -29,6 +29,21 @@ function getSummary(did) {
 
 }
 
+// get the author of some document
+function getAuthor(did) {
+    
+}
+
+// find all edits made by some author
+function getAuthored(author) {
+
+}
+
+// get the most recent version of document
+function getMostRecent() {
+
+}
+
 /*
  * getTree
  * Gets all relevant documents related to the document id 
